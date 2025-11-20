@@ -9,6 +9,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/site.css" />
     <style>
+        /* Box sizing for all elements */
+        * {
+            box-sizing: border-box;
+        }
+
         /* Top Bar */
         .top-bar {
             display: flex;
@@ -20,18 +25,18 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 96%;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-            .top-bar .left span {
-                margin-right: 10px;
-            }
+        .top-bar .left span {
+            margin-right: 15px;
+        }
 
-            .top-bar i {
-                margin-right: 5px;
-            }
+        .top-bar i {
+            margin-right: 5px;
+        }
 
         /* Navbar */
         .navbar {
@@ -42,9 +47,9 @@
             padding: 15px 40px;
             border-radius: 0 0 20px 20px;
             position: fixed;
-            top: 40px;
+            top: 40px; /* below top-bar */
             left: 0;
-            width: 96%;
+            width: 100%;
             z-index: 999;
         }
 
@@ -61,14 +66,16 @@
             list-style: none;
             display: flex;
             gap: 30px;
+            margin: 0;
+            padding: 0;
         }
 
-            .navbar .menu li a {
-                text-decoration: none;
-                color: white;
-                font-size: 16px;
-                font-weight: 500;
-            }
+        .navbar .menu li a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+        }
 
         .donate-btn {
             background: white;
@@ -79,7 +86,42 @@
             text-decoration: none;
         }
 
-      
+        /* Content below fixed header */
+        .content {
+            margin-top: 120px; /* top-bar + navbar height */
+            padding: 20px;
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+
+            .navbar .menu {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .donate-btn {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .content {
+                margin-top: 160px; /* extra space for stacked header */
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -104,18 +146,19 @@
             HelpingHands
         </div>
         <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/Requests">Requests</a></li>
-            <li><a href="/Users">Users</a></li>
-            <li><a href="/Donors">Donors</a></li>
-            <li><a href="/Reports">Reports</a></li>
-            <li><a href="/About">About</a></li>
-            <li><a href="/Contact">Contact</a></li>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Requests" asp-action="Index">Requests</a></li>
+            <li><a asp-controller="Users" asp-action="Index">Users</a></li>
+            <li><a asp-controller="Donors" asp-action="Index">Donors</a></li>
+            <li><a asp-controller="Reports" asp-action="Index">Reports</a></li>
+            <li><a asp-controller="Home" asp-action="About">About</a></li>
+            <li><a asp-controller="Home" asp-action="Contact">Contact</a></li>
         </ul>
+
         <a href="/Donate" class="donate-btn">Donate</a>
     </nav>
 
-    <!-- Sab content yahan aayega - ab bilkul perfect -->
+    <!-- Main Content -->
     <div class="content">
         @RenderBody()
     </div>
