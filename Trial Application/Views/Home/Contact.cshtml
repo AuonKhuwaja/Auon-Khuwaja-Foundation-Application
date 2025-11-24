@@ -1,0 +1,231 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+<style>
+    .contact_area {
+        padding: 140px 20px 80px 20px; /* Push content below header */
+        background: #f9f9f9;
+        text-align: center;
+    }
+
+    .contact-title {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #222;
+    }
+
+    .contact-description {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 60px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 60px;
+    }
+
+    .contact-info {
+        background: #fff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        max-width: 500px;
+        width: 100%;
+    }
+
+        .contact-info h4 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #27ae60;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: #2ecc71;
+            text-decoration: none;
+        }
+
+    .faq-section {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+        .faq-section h3 {
+            font-size: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #222;
+        }
+
+    .faq-item {
+        margin-bottom: 20px;
+        background: #fff;
+        padding: 20px;
+        padding-left: 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    }
+
+        .faq-item h5 {
+            font-size: 20px;
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .contact-title {
+            font-size: 28px;
+        }
+
+        .contact-description {
+            font-size: 16px;
+        }
+
+        .contact-info {
+            max-width: 100%;
+            padding: 25px 20px;
+        }
+
+        .faq-section {
+            padding: 0 15px;
+        }
+    }
+
+    .faq-section {
+        max-width: 800px;
+        margin: 30px auto;
+    }
+
+    .faq-item {
+        border-bottom: 1px solid #ddd;
+        padding: 15px 0;
+    }
+
+    .faq-question {
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        position: relative;
+        transition: color 0.3s;
+        padding-left: 20px;
+    }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            font-size: 24px;
+            transition: transform 0.3s;
+            padding-right: 20px;
+        }
+
+        .faq-question.active::after {
+            content: '−';
+            transform: rotate(180deg);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease, opacity 0.4s ease;
+        opacity: 0;
+        margin-top: 10px;
+        color: #555;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+        .faq-answer.show {
+            opacity: 1;
+            max-height: 500px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+</style>
+
+<section class="contact_area">
+    <div class="container">
+        <h3 class="contact-title">Get in Touch</h3>
+        <p class="contact-description">
+            We’d love to hear from you. Reach out to us for donations, volunteering, or any questions about our programs.
+        </p>
+
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h4>Contact Info</h4>
+                <p><strong>Phone:</strong> <a href="tel:+923321921110">+92 332 1921110</a></p>
+                <p><strong>Email:</strong> <a href="mailto:auonkhuwaja10@gmail.com">auonkhuwaja10@gmail.com</a></p>
+                <p>
+                    <strong>Follow Us:</strong>
+                    <strong>Follow Us:</strong>
+                    <a href="https://www.facebook.com/AuonKhuwaja" target="_blank">Facebook</a> |
+                    <a href="https://www.instagram.com/auon_khuwaja" target="_blank">Instagram</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+
+            <div class="faq-item">
+                <h5 class="faq-question">How can I donate?</h5>
+                <p class="faq-answer">You can donate online via our website or visit our office directly. All contributions are fully transparent.</p>
+            </div>
+
+            <div class="faq-item">
+                <h5 class="faq-question">Can I volunteer for events?</h5>
+                <p class="faq-answer">Yes! We welcome volunteers for community programs and events. Contact us to get started.</p>
+            </div>
+
+            <div class="faq-item">
+                <h5 class="faq-question">Do you accept in-kind donations?</h5>
+                <p class="faq-answer">Absolutely. Please contact us to know what items are needed and how to deliver them.</p>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<script>
+    const questions = document.querySelectorAll('.faq-question');
+
+    questions.forEach(q => {
+        q.addEventListener('click', () => {
+            const answer = q.nextElementSibling;
+
+            // Toggle active class on question
+            q.classList.toggle('active');
+
+            // Toggle answer visibility
+            answer.classList.toggle('show');
+        });
+    });
+</script>
+
