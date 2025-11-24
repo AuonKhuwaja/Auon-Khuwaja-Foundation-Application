@@ -348,6 +348,28 @@
             .stat-text {
                 font-size: 16px;
             }
+
+            .stats-section {
+                padding: 80px 0;
+                text-align: center;
+            }
+
+            .stats-wrapper {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+                flex-wrap: wrap;
+            }
+
+            .stat {
+                font-size: 20px;
+            }
+
+            .stat-number {
+                font-size: 40px;
+                font-weight: 700;
+                margin-top: 10px;
+            }
         }
 
     </style>
@@ -362,31 +384,35 @@
             <p class="sub-text">With so much to consume and such little time, your help makes a difference.</p>
             
             <div class="hero-buttons">
-                <a href="/Donate" class="hero-btn donate">Donate Now</a>
+                <a href="/Donor" class="hero-btn donate">Donate Now</a>
                 <a href="/Join" class="hero-btn join">Become a Volunteer</a>
             </div>
         </div>
     </header>
+
     <section class="stats-section">
         <div class="stats-wrapper">
             <div class="stat">
                 <i class="fa-solid fa-calendar-check"></i>
-                <div class="stat-number">120</div>
+                <div class="stat-number" data-target="120">0</div>
                 <div class="stat-text">Finished Events</div>
             </div>
+
             <div class="stat">
                 <i class="fa-solid fa-heart-circle-bolt"></i>
-                <div class="stat-number">95</div>
+                <div class="stat-number" data-target="95">0</div>
                 <div class="stat-text">Lives Saved</div>
             </div>
+
             <div class="stat">
                 <i class="fa-solid fa-hands-holding-child"></i>
-                <div class="stat-number">150</div>
+                <div class="stat-number" data-target="150">0</div>
                 <div class="stat-text">Volunteers</div>
             </div>
+
             <div class="stat">
                 <i class="fa-solid fa-people-roof"></i>
-                <div class="stat-number">200</div>
+                <div class="stat-number" data-target="200">0</div>
                 <div class="stat-text">Communities Helped</div>
             </div>
         </div>
@@ -404,11 +430,13 @@
         <div class="wrapper">
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1615461065929-4f8ffed6ca40?q=80&w=1329&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Blood Drive">
+                <img src="https://images.unsplash.com/photo-1608686207856-001b95cf60ca?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blood Drive">
                 <div class="info">
-                    <h1>Blood Drive</h1>
-                    <p>Every donation saves lives. Your single unit of blood can help accident victims, surgical patients, and those fighting chronic illnesses.</p>
-                    <button>Read More</button>
+                    <h1>Ration Drive</h1>
+                    <p>
+                        Every donation saves lives. Your single unit of blood can help accident victims, surgical patients, and those fighting chronic illnesses.
+                        We also actively support communities by providing ration during floods, helping families during the COVID-19 pandemic, and distributing food and essentials every Ramadan.
+                    </p>
                 </div>
             </div>
 
@@ -417,7 +445,6 @@
                 <div class="info">
                     <h1>Flood Relief</h1>
                     <p>Join our mission to support families displaced by floods with food, shelter, and emergency essentials during their toughest times.</p>
-                    <button>Read More</button>
                 </div>
             </div>
 
@@ -426,12 +453,46 @@
                 <div class="info">
                     <h1>Winter Drive</h1>
                     <p>Help us protect the underprivileged from harsh winter conditions by providing warm clothes, blankets, and essential winter supplies.</p>
-                    <button>Read More</button>
                 </div>
             </div>
 
         </div>
     </section>
+    <script>
+        const counters = document.querySelectorAll('.stat-number');
+        let started = false;
+
+        function startCounters() {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const speed = 20;
+
+                const update = () => {
+                    if (count < target) {
+                        count += Math.ceil(target / 100); // smooth speed
+                        counter.textContent = count;
+                        setTimeout(update, speed);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                update();
+            });
+        }
+
+        // detect section visibility
+        window.addEventListener('scroll', () => {
+            const section = document.querySelector('.stats-section');
+            const top = section.getBoundingClientRect().top;
+
+            if (top < window.innerHeight - 100 && !started) {
+                startCounters();
+                started = true;
+            }
+        });
+    </script>
 
 </body>
 </html>
