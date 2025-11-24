@@ -248,8 +248,8 @@
         <ul class="menu">
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
             <li><a asp-controller="Requests" asp-action="Index">Requests</a></li>
-            <li><a asp-controller="Users" asp-action="Index">Users</a></li>
-            <li><a asp-controller="Donors" asp-action="Index">Donors</a></li>
+            <li><a asp-controller="Home" asp-action="Users">Users</a></li>
+            <li><a asp-controller="Home" asp-action="Donor">Donors</a></li>
             <li><a asp-controller="Reports" asp-action="Index">Reports</a></li>
             <li>
                 <a asp-controller="Home" asp-action="AboutUs">About</a>
@@ -259,12 +259,13 @@
 
         <a href="/Donate" class="donate-btn">Donate</a>
     </nav>
-
+   
    
     <!-- BODY CONTENT -->
     <div class="content">
         @RenderBody()
     </div>
+
 
     <!-- FOOTER -->
     <footer>

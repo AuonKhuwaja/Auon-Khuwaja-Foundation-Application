@@ -1,0 +1,335 @@
+﻿@{
+    ViewData["Title"] = "Donate";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+    /* ---------------- Page Back ground ---------------- */
+    body {
+        background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(0, 145, 80, 0.3)), url('https://images.pexels.com/photos/6646847/pexels-photo-6646847.jpeg?_gl=1*wbzeag*_ga*MTIxODgyNzYyNC4xNzYzOTg0NDU1*_ga_8JE65Q40S6*czE3NjM5ODQ0NTUkbzEkZzEkdDE3NjM5ODQ0NjkkajQ2JGwwJGgw'); /* ← apni image ka path yahan */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+
+    /* ---------------- Center Wrapper ---------------- */
+    .donate-wrapper {
+        margin-top: 20vh;
+        max-width: 650px;
+        margin: 20vh auto 0 auto;
+        padding: 0 15px;
+        margin-bottom: 10vh;
+    }
+
+    h2 {
+        font-weight: 600;
+        color: white;
+        margin-bottom: 10px;
+        font-size: 20px;
+       text-align:center;
+    }
+
+
+    /* ---------------- Glass Card Styling ---------------- */
+    /* ---------------- Donation Card ---------------- */
+    .card {
+        border-radius: 1.2rem;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        transition: 0.3s;
+    }
+
+    /* ---------------- Headings ---------------- */
+    h5 {
+        font-weight: 600;
+        color: #009150;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    /* ---------------- Amount Buttons ---------------- */
+    .btn-outline-primary {
+        border-radius: 0.5rem;
+        padding: 0.45rem 1.3rem;
+        border-color: #009150;
+        color: #009150;
+        font-weight: 500;
+        transition: 0.25s;
+    }
+
+        .btn-outline-primary:hover {
+            background: #27ae60;
+            color: #fff;
+            border-color: #27ae60;
+        }
+
+    /* ---------------- Recurring Buttons ---------------- */
+    .btn-check + .btn-outline-primary {
+        border-radius: 0.5rem;
+    }
+
+    .btn-check:checked + .btn-outline-primary {
+        background: #2ecc71;
+        border-color: #2ecc71;
+        color: #fff;
+        box-shadow: 0 0 6px rgba(0, 150, 80, 0.4);
+    }
+
+    /* ---------------- Payment Methods ---------------- */
+    .payment-methods .form-check {
+        background: #f8f9fa;
+        padding: 0.6rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e6e6e6;
+        transition: 0.2s;
+    }
+
+        .payment-methods .form-check:hover {
+            background: #e9f9f0;
+            border-color: #009150;
+        }
+
+    .payment-methods .form-check-input:checked + .form-check-label {
+        color: #009150;
+        font-weight: 600;
+    }
+
+    /* ---------------- Custom Amount ---------------- */
+    .custom-amount label {
+        font-weight: 500;
+        color: #009150;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+
+    .custom-amount input {
+        width: 160px;
+        display: inline-block;
+        border-radius: 0.5rem;
+        border: 2px solid #009150;
+        padding: 6px 10px;
+        font-size: 0.95rem;
+        transition: 0.2s ease;
+    }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #2ecc71;
+            box-shadow: 0 0 5px rgba(46, 204, 113, 0.4);
+        }
+
+
+    /* ---------------- Info Box ---------------- */
+    .info-section {
+        background: #f1fef7;
+        border-left: 4px solid #27ae60;
+        padding: 1rem 1.2rem;
+        border-radius: 0.8rem;
+    }
+
+        .info-section h6 {
+            color: #009150;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .info-section p {
+            color: #555;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+    /* ---------------- Submit Button ---------------- */
+    .btn-primary {
+        background: #009150;
+        border-color: #009150;
+        padding: 0.8rem;
+        font-size: 1.05rem;
+        border-radius: 0.6rem;
+        color:white;
+        font-weight: 600;
+    }
+
+        .btn-primary:hover {
+            background: #027d45;
+            border-color: #027d45;
+        }
+
+    /* ---------- Popup Overlay ---------- */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none; /* hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    /* ---------- Popup Box ---------- */
+    .popup-content {
+        background: linear-gradient(135deg, #2ecc71, #009150);
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+        color: #fff;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        animation: popupShow 0.4s ease;
+        position: relative;
+    }
+
+    /* ---------- Close Button ---------- */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* ---------- Icon ---------- */
+    .popup-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    /* ---------- Button ---------- */
+    .popup-content .btn {
+        margin-top: 1rem;
+        background-color: #fff;
+        color: #009150;
+        border: none;
+        font-weight: 600;
+        padding: 0.6rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .popup-content .btn:hover {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+
+    /* ---------- Animation ---------- */
+    @@keyframes popupShow {
+        0% {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+</style>
+
+<div class="p-4 donate-wrapper">
+    <h2 class="text-primary">Make a Donation</h2>
+
+    <div class="card">
+        <!-- Donation Amount -->
+        <div class="mb-4">
+            <h5>Select Amount</h5>
+            <div class="mb-2">
+                <button class="btn btn-outline-primary me-2 mb-2">$10</button>
+                <button class="btn btn-outline-primary me-2 mb-2">$25</button>
+                <button class="btn btn-outline-primary me-2 mb-2">$50</button>
+                <button class="btn btn-outline-primary me-2 mb-2">$100</button>
+            </div>
+            <br />
+           
+          
+            <div class="custom-amount mt-2">
+                <label>Custom: $</label>
+                <input type="number" min="1" placeholder="Enter amount" class="form-control d-inline-block w-auto">
+            </div>
+        </div>
+<br/>
+
+        <!-- Recurring Donations -->
+        <div class="mb-4">
+            <h5>Recurring Donation</h5>
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="recurring" id="weekly" autocomplete="off">
+                <label class="btn btn-outline-primary" for="weekly">Weekly</label>
+
+                <input type="radio" class="btn-check" name="recurring" id="monthly" autocomplete="off">
+                <label class="btn btn-outline-primary" for="monthly">Monthly</label>
+
+                <input type="radio" class="btn-check" name="recurring" id="yearly" autocomplete="off">
+                <label class="btn btn-outline-primary" for="yearly">Yearly</label>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <!-- Payment Methods -->
+        <div class="mb-4">
+            <h5>Payment Method</h5>
+            <div class="payment-methods">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard">
+                    <label class="form-check-label" for="creditCard"><i class="fa fa-credit-card me-1"></i> Credit Card</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="paypal">
+                    <label class="form-check-label" for="paypal"><i class="fa fa-paypal me-1"></i> PayPal</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="bank">
+                    <label class="form-check-label" for="bank"><i class="fa fa-university me-1"></i> Bank Transfer</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="mobile">
+                    <label class="form-check-label" for="mobile"><i class="fa fa-mobile-screen-button me-1"></i> Mobile Wallets</label>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <!-- Custom Thank You Popup -->
+        <div id="donationPopup" class="popup-overlay">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <div class="popup-icon">❤️</div>
+                <h3>Thank You for Your Donation!</h3>
+                <p>Your support helps us continue our work and make a positive impact in the community.</p>
+                <button class="btn btn-success" onclick="closePopup()">OK</button>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button class="btn btn-primary w-100" onclick="showPopup()">
+                <i class="fa fa-heart me-1"></i> Donate Now
+            </button>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function showPopup() {
+        document.getElementById('donationPopup').style.display = 'flex';
+    }
+
+    function closePopup() {
+        document.getElementById('donationPopup').style.display = 'none';
+    }
+</script>
+    
+

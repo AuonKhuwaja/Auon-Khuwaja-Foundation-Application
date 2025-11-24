@@ -21,7 +21,14 @@ namespace Trial_Application.Controllers
         {
             return View();
         }
-
+        public IActionResult Users()
+        {
+            return View();
+        }
+        public IActionResult Donor()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
