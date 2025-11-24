@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Helping Hands Foundation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helping Hands Foundation</title>
 
-<!-- FontAwesome Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Custom CSS -->
-<link rel="stylesheet" href="/css/landing.css" />
-
-<style>
-/* Reset margin/padding */
-        *html, body {
+    <style>
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            width: 100%;
-            overflow-x: hidden; /* prevent horizontal scroll */
         }
 
+        body, html {
+            width: 100%;
+            min-height: 100%;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
 
-/* Hero Section */
+        /* -------------------------------------------------
+           HERO SECTION
+        --------------------------------------------------*/
         .hero {
             width: 100%;
             height: 100vh;
-            background-image: url('/images/kids-bg.jpg');
+            background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -37,92 +40,398 @@
             position: relative;
         }
 
+            .hero .overlay {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(34, 139, 84, 0.55);
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
 
-.hero .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(34, 139, 84, 0.55); /* semi-transparent green overlay */
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
 
-.hero-content {
-    position: relative;
-    z-index: 2; /* ensure content is above overlay */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-    max-width: 800px;
-}
+            .hero-content .small-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
 
-.hero-content .small-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
+            .hero-content h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+                line-height: 1.2;
+            }
 
-.hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    line-height: 1.2;
-}
+            .hero-content .sub-text {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
 
-.hero-content .sub-text {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
+        .learn-btn {
+            background: #2ecc71;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.learn-btn {
-    background: #2ecc71;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+            .learn-btn:hover {
+                background: #018749;
+            }
 
-.learn-btn:hover {
-    background: #27ae60;
-}
+        /* -------------------------------------------------
+           CARDS SECTION
+        --------------------------------------------------*/
+        .cards-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
 
-/* Responsive adjustments */
-@@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 32px;
-    }
-    .hero-content .sub-text {
-        font-size: 16px;
-    }
-    .learn-btn {
-        font-size: 16px;
-        padding: 10px 25px;
-    }
-}
-</style>
+        .cards-title {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #2ecc71;
+        }
+
+        /* Elegant Wrapper */
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* -------------------------------------------------
+           CARD DESIGN
+        --------------------------------------------------*/
+        .card {
+            width: 310px;
+            height: 400px;
+            border-radius: 18px;
+            padding: 1.5rem;
+            position: relative;
+            background: white;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            box-shadow: 0px 12px 25px rgba(0,0,0,0.15);
+            transition: 0.4s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-12px);
+                box-shadow: 0px 18px 35px rgba(0,0,0,0.25);
+            }
+
+            .card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: 18px;
+                background: rgba(0,0,0,0.55);
+                opacity: 0;
+                transition: 0.4s ease;
+            }
+
+            .card:hover::before {
+                opacity: 1;
+            }
+
+            .card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: absolute;
+                inset: 0;
+                border-radius: 18px;
+            }
+        .cards-description {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 10px auto 40px auto; /* center and add spacing */
+            line-height: 1.6;
+        }
+
+        .info {
+            position: relative;
+            z-index: 3;
+            color: white;
+            opacity: 0;
+            transform: translateY(25px);
+            transition: 0.4s ease;
+        }
+
+        .card:hover .info {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+
+        .info h1 {
+            margin: 0 0 8px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .info p {
+            font-size: 15px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .info button {
+            padding: 8px 16px;
+            background: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .info button:hover {
+                background: #2ecc71;
+                color: white;
+            }
+        /* Buttons */
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .hero-btn {
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s ease;
+        }
+
+            .hero-btn.donate {
+                background: #ffffff;
+                color: #2ecc71;
+            }
+
+            .hero-btn.join {
+                background: transparent;
+                border: 2px solid white;
+                color: white;
+            }
+
+            .hero-btn:hover {
+                transform: scale(1.06);
+            }
+        /* Fade-In Animation */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* -------------------------------------------------
+           RESPONSIVE
+        --------------------------------------------------*/
+        @@media (max-width: 900px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .wrapper {
+                flex-wrap: wrap;
+                gap: 25px;
+            }
+
+            .card {
+                width: 90%;
+                max-width: 350px;
+            }
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #2ecc71, #009150);
+            padding: 80px 20px; /* space inside the section */
+            margin: 80px 20px; /* more space outside section, from top/bottom and sides */
+            border-radius: 30px; /* rounded outer edges */
+            color: #fff;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* optional: subtle shadow for depth */
+        }
+
+
+        .stats-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 60px; /* increased gap between cards */
+            flex-wrap: wrap;
+            max-width: 1100px; /* slightly narrower to give more margin from edges */
+            margin: auto;
+            padding: 0 20px; /* extra padding on sides */
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* slightly larger gap between icon, number, text */
+            min-width: 150px;
+            padding: 35px 25px; /* bigger padding inside cards */
+            border-radius: 15px; /* more rounded corners */
+            background: rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+            .stat:hover {
+                transform: translateY(-10px);
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .stat i {
+                font-size: 55px; /* slightly bigger icon */
+                color: #fff;
+            }
+
+        .stat-number {
+            font-size: 38px; /* bigger number */
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .stat-text {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .stats-wrapper {
+                gap: 30px;
+            }
+
+            .stat i {
+                font-size: 45px;
+            }
+
+            .stat-number {
+                font-size: 30px;
+            }
+
+            .stat-text {
+                font-size: 16px;
+            }
+        }
+
+    </style>
 </head>
-
 <body>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="overlay"></div>
-
         <div class="hero-content">
             <p class="small-title">Get Started Today.</p>
             <h1>Let's Help Beings!</h1>
-            <p class="sub-text">
-                With so much to consume and such little time, your help makes a difference.
-            </p>
-
-            <a href="#" class="learn-btn">Learn More</a>
+            <p class="sub-text">With so much to consume and such little time, your help makes a difference.</p>
+            
+            <div class="hero-buttons">
+                <a href="/Donate" class="hero-btn donate">Donate Now</a>
+                <a href="/Join" class="hero-btn join">Become a Volunteer</a>
+            </div>
         </div>
     </header>
+    <section class="stats-section">
+        <div class="stats-wrapper">
+            <div class="stat">
+                <i class="fa-solid fa-calendar-check"></i>
+                <div class="stat-number">120</div>
+                <div class="stat-text">Finished Events</div>
+            </div>
+            <div class="stat">
+                <i class="fa-solid fa-heart-circle-bolt"></i>
+                <div class="stat-number">95</div>
+                <div class="stat-text">Lives Saved</div>
+            </div>
+            <div class="stat">
+                <i class="fa-solid fa-hands-holding-child"></i>
+                <div class="stat-number">150</div>
+                <div class="stat-text">Volunteers</div>
+            </div>
+            <div class="stat">
+                <i class="fa-solid fa-people-roof"></i>
+                <div class="stat-number">200</div>
+                <div class="stat-text">Communities Helped</div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="cards-section">
+        <h2 class="cards-title">Reason of Helping</h2>
+        <p class="cards-description">
+            At AK Foundation, we strive to save lives and support communities in need. Every act of kindness makes a difference!
+        </p>
+
+
+
+        <div class="wrapper">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1615461065929-4f8ffed6ca40?q=80&w=1329&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Blood Drive">
+                <div class="info">
+                    <h1>Blood Drive</h1>
+                    <p>Every donation saves lives. Your single unit of blood can help accident victims, surgical patients, and those fighting chronic illnesses.</p>
+                    <button>Read More</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1728320764872-2eebb4f95e4e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Flood Relief">
+                <div class="info">
+                    <h1>Flood Relief</h1>
+                    <p>Join our mission to support families displaced by floods with food, shelter, and emergency essentials during their toughest times.</p>
+                    <button>Read More</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Winter Drive">
+                <div class="info">
+                    <h1>Winter Drive</h1>
+                    <p>Help us protect the underprivileged from harsh winter conditions by providing warm clothes, blankets, and essential winter supplies.</p>
+                    <button>Read More</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 </body>
 </html>
