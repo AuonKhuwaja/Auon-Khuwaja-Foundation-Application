@@ -1,0 +1,207 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+        <p class="small-title">Making a Difference Starts With You</p>
+        <h1>Together, We Create Hope</h1>
+        <p class="sub-text">
+            Every act of kindness changes a life. Join us in uplifting communities and supporting those in need.
+        </p>
+
+        <a href="#" class="learn-btn">Discover More</a>
+    </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about_area">
+    <div class="container">
+        <div class="row justify-content-center mb-55">
+            <div class="col-lg-8 text-center">
+                <h3>Who We Are</h3>
+                <p>
+                    Helping Hands Foundation is a non-profit initiative dedicated to supporting underprivileged individuals through
+                    welfare programs, emergency aid, education support, and community upliftment projects.
+                    We believe in spreading hope, compassion, and positive change — one step at a time.
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="single_about">
+                    <img src="/img/help/1.png" alt="Fundraising">
+                    <h4>Financial Assistance</h4>
+                    <p>
+                        We provide support for food, medicine, education fees, and urgent financial needs
+                        to families facing difficult times.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="single_about">
+                    <img src="/img/help/2.png" alt="Community Support">
+                    <h4>Community Support</h4>
+                    <p>
+                        Our volunteers work closely with local communities to deliver resources and ensure
+                        no one is left behind in times of crisis.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="single_about">
+                    <img src="/img/help/3.png" alt="Awareness Programs">
+                    <h4>Awareness & Education</h4>
+                    <p>
+                        We conduct awareness drives and educational sessions to empower individuals
+                        with knowledge and opportunities for a better future.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PAGE-SPECIFIC CSS -->
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        margin-top: 80px; /* space for your layout navbar */
+        width: 100%;
+        height: 100vh;
+        background-image: url('/images/kids-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+    }
+
+        .hero .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 139, 84, 0.55);
+            top: 0;
+            left: 0;
+        }
+
+    .hero-content {
+        position: relative;
+        z-index: 5;
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    .small-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    .sub-text {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    .learn-btn {
+        background: #2ecc71;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+        .learn-btn:hover {
+            background: #27ae60;
+        }
+
+    /* ABOUT SECTION */
+    .about_area {
+        padding: 80px 20px;
+        background: #f9f9f9;
+    }
+
+        .about_area h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .about_area p {
+            font-size: 18px;
+            color: #555;
+        }
+
+    .single_about {
+        background: #fff;
+        padding: 30px 20px;
+        margin: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: 0.3s;
+    }
+
+        .single_about:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        }
+
+        .single_about img {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .single_about h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .single_about p {
+            font-size: 16px;
+            color: #555;
+        }
+
+    @@media (max-width: 768px) {
+        .hero-content h1 {
+            font-size: 32px;
+        }
+
+        .sub-text {
+            font-size: 16px;
+        }
+
+        .single_about {
+            margin: 10px 0;
+        }
+    }
+</style>
